@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - Create Your Professional Resume</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>📄 Resume Builder</h1>
+            <p>Create your professional resume in minutes</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container main-container">
+        <!-- Left Panel - Form -->
+        <div class="form-panel">
+            <div class="form-header">
+                <h2>Enter Your Details</h2>
+                <div class="button-group">
+                    <button id="clearBtn" class="btn btn-secondary">Clear All</button>
+                    <button id="downloadBtn" class="btn btn-primary">Download PDF</button>
+                </div>
+            </div>
+
+            <form id="resumeForm">
+                <!-- Personal Information -->
+                <section class="form-section">
+                    <h3>Personal Information</h3>
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="jobTitle">Job Title *</label>
+                        <input type="text" id="jobTitle" required placeholder="Software Engineer">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" required placeholder="john.doe@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" placeholder="+1 (555) 123-4567">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" placeholder="New York, NY">
+                        </div>
+                        <div class="form-group">
+                            <label for="website">Website/LinkedIn</label>
+                            <input type="url" id="website" placeholder="linkedin.com/in/johndoe">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Professional Summary -->
+                <section class="form-section">
+                    <h3>Professional Summary</h3>
+                    <div class="form-group">
+                        <label for="summary">Summary</label>
+                        <textarea id="summary" rows="4" placeholder="Brief overview of your professional background and key skills..."></textarea>
+                    </div>
+                </section>
+
+                <!-- Work Experience -->
+                <section class="form-section">
+                    <h3>Work Experience</h3>
+                    <div id="experienceContainer"></div>
+                    <button type="button" id="addExperience" class="btn btn-add">+ Add Experience</button>
+                </section>
+
+                <!-- Education -->
+                <section class="form-section">
+                    <h3>Education</h3>
+                    <div id="educationContainer"></div>
+                    <button type="button" id="addEducation" class="btn btn-add">+ Add Education</button>
+                </section>
+
+                <!-- Skills -->
+                <section class="form-section">
+                    <h3>Skills</h3>
+                    <div class="form-group">
+                        <label for="skills">Skills (comma-separated)</label>
+                        <textarea id="skills" rows="3" placeholder="JavaScript, React, Node.js, Python, SQL, Git"></textarea>
+                        <small>Enter your skills separated by commas</small>
+                    </div>
+                </section>
+            </form>
+        </div>
+
+        <!-- Right Panel - Preview -->
+        <div class="preview-panel">
+            <div class="preview-header">
+                <h2>Resume Preview</h2>
+                <select id="templateSelect" class="template-select">
+                    <option value="professional">Professional</option>
+                    <option value="modern">Modern</option>
+                    <option value="creative">Creative</option>
+                </select>
+            </div>
+            <div id="resumePreview" class="resume-preview">
+                <!-- Resume content will be dynamically generated here -->
+                <div class="resume-content professional-template">
+                    <div class="resume-header">
+                        <h1 id="preview-name">Your Name</h1>
+                        <h2 id="preview-title">Your Job Title</h2>
+                        <div class="contact-info">
+                            <span id="preview-email"></span>
+                            <span id="preview-phone"></span>
+                            <span id="preview-location"></span>
+                            <span id="preview-website"></span>
+                        </div>
+                    </div>
+
+                    <div id="preview-summary-section" class="resume-section" style="display: none;">
+                        <h3>Professional Summary</h3>
+                        <p id="preview-summary"></p>
+                    </div>
+
+                    <div id="preview-experience-section" class="resume-section" style="display: none;">
+                        <h3>Work Experience</h3>
+                        <div id="preview-experience"></div>
+                    </div>
+
+                    <div id="preview-education-section" class="resume-section" style="display: none;">
+                        <h3>Education</h3>
+                        <div id="preview-education"></div>
+                    </div>
+
+                    <div id="preview-skills-section" class="resume-section" style="display: none;">
+                        <h3>Skills</h3>
+                        <div id="preview-skills" class="skills-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Resume Builder. Create your perfect resume today! author Ujjwal Mandal</p>
+        </div>
+    </footer>
+
+    <!-- Template for Experience Item -->
+    <template id="experienceTemplate">
+        <div class="experience-item">
+            <div class="item-header">
+                <h4>Experience #<span class="item-number"></span></h4>
+                <button type="button" class="btn-remove">Remove</button>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Job Title *</label>
+                    <input type="text" class="exp-title" required placeholder="Senior Developer">
+                </div>
+                <div class="form-group">
+                    <label>Company *</label>
+                    <input type="text" class="exp-company" required placeholder="Tech Corp">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Start Date</label>
+                    <input type="month" class="exp-start">
+                </div>
+                <div class="form-group">
+                    <label>End Date</label>
+                    <input type="month" class="exp-end">
+                </div>
+                <div class="form-group">
+                    <label style="opacity: 0;">Current</label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="exp-current">
+                        Currently Working
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="exp-description" rows="3" placeholder="Describe your responsibilities and achievements..."></textarea>
+            </div>
+        </div>
+    </template>
+
+    <!-- Template for Education Item -->
+    <template id="educationTemplate">
+        <div class="education-item">
+            <div class="item-header">
+                <h4>Education #<span class="item-number"></span></h4>
+                <button type="button" class="btn-remove">Remove</button>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Degree *</label>
+                    <input type="text" class="edu-degree" required placeholder="Bachelor of Science">
+                </div>
+                <div class="form-group">
+                    <label>Institution *</label>
+                    <input type="text" class="edu-school" required placeholder="University Name">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Start Date</label>
+                    <input type="month" class="edu-start">
+                </div>
+                <div class="form-group">
+                    <label>End Date</label>
+                    <input type="month" class="edu-end">
+                </div>
+                <div class="form-group">
+                    <label>GPA (Optional)</label>
+                    <input type="text" class="edu-gpa" placeholder="3.8">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="edu-description" rows="2" placeholder="Honors, relevant coursework, achievements..."></textarea>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
