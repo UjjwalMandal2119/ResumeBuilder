@@ -4,13 +4,13 @@ Resume Builder is a fully-functional web application built with vanilla HTML, CS
 
 🚀 Key Features (Bullet Points)
 
-✅ Zero Setup - Download 3 files and open in browser
-✅ Real-time Preview - See changes instantly as you type
-✅ 3 Professional Templates - Professional, Modern, Creative
-✅ Auto-Save - Never lose your work with localStorage
-✅ PDF Export - Download or print ready-to-use resumes
-✅ Fully Responsive - Works on desktop, tablet, and mobile
-✅ Privacy First - All data stays in your browser
+✅ Zero Setup - Download 3 files and open in browser <br>
+✅ Real-time Preview - See changes instantly as you type <br>
+✅ 3 Professional Templates - Professional, Modern, Creative <br>
+✅ Auto-Save - Never lose your work with localStorage <br>
+✅ PDF Export - Download or print ready-to-use resumes <br>
+✅ Fully Responsive - Works on desktop, tablet, and mobile <br>
+✅ Privacy First - All data stays in your browser <br>
 ✅ No Dependencies - Pure vanilla JavaScript, no frameworks
 
 
